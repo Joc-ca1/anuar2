@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz San Valentín!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #ffe6e6;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background-color: #ff9999;
+            position: relative;
+            margin-bottom: 20px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .envelope.open .flap {
+            transform: rotateX(180deg);
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ff8080;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            transform-origin: top;
+            transition: transform 0.5s;
+            z-index: 2;
+        }
+
+        .card {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 90%;
+            height: 90%;
+            background-color: #fff7e6;
+            border: 2px dotted #666;
+            padding: 20px;
+            text-align: center;
+            font-style: italic;
+            display: none;
+            z-index: 1;
+        }
+
+        .card-image {
+            max-width: 35%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .card.show {
+            display: block;
+        }
+
+        .message {
+            font-size: 1.2em;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            text-align: right;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 25px;
+            background-color: #ff4d8d;
+            color: white;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff3377;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff4d4d;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Holaa :) </h1>
+   
+    <div class="envelope">
+        <div class="flap"></div>
+        <div class="card">
+            <img src="imagenes/cejas.png" alt="Imagen romántica" class="card-image">
+            <div class="message">
+                Por si no te lo había dicho hoy...<br>
+                te quiero ❤️
+            </div>
+        </div>
+        <div class="heart">❤️</div>
+    </div>
+
+    <div class="buttons">
+        <button onclick="toggleEnvelope()">Abrir</button>
+        <button onclick="toggleEnvelope()">Cerrar</button>
+    </div>
+
+    <script>
+        function toggleEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const card = document.querySelector('.card');
+            envelope.classList.toggle('open');
+            
+            setTimeout(() => {
+                card.classList.toggle('show');
+            }, envelope.classList.contains('open') ? 500 : 0);
+        }
+    </script>
+</body>
+</html>
